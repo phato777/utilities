@@ -1,0 +1,35 @@
+{
+    "include": [
+        "src/**/*"
+    ],
+    "compilerOptions": {
+        "target": "es5",
+        "moduleResolution": "node",
+        "module": "commonjs",
+        "jsx": "react",
+        "lib": [
+          "dom",
+          "es6",
+          "dom.iterable",
+          "scripthost",
+          "es2015",
+          "es2017"
+        ],
+        "types": [],
+    
+        "alwaysStrict": true,
+        "strictNullChecks": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": true,
+        
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+    
+        "sourceMap": true,
+        "declaration": true,
+    
+        "outDir": "./lib"
+    },
+}

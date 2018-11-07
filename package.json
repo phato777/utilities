@@ -1,0 +1,16 @@
+{
+  "main": "./lib/index.js",
+  "name": "po-utilities",
+  "description": "Javascript Utilities",
+  "version": "0.1.0",
+  "license": "ISC",
+  "author": "Patrick Otten <patrick@patrickotten.com>",
+  "private": true,
+  "scripts": {
+    "build": "rm -rf ./lib && tsc",
+    "watch": "tsc -watch"
+  },
+  "devDependencies": {
+    "typescript": "^3.0.3"
+  }
+}
