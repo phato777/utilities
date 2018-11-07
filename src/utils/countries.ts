@@ -3,7 +3,7 @@ interface ICountry {
     title: string;
 }
 
-export default class Countries {
+export class Countries {
     public countries: ICountry[];
 
     constructor() {

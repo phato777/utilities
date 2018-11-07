@@ -2,7 +2,7 @@ interface ICountry {
     key: string;
     title: string;
 }
-export default class Countries {
+export declare class Countries {
     countries: ICountry[];
     constructor();
     get(country: string): ICountry | undefined;
