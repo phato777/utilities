@@ -1,5 +1,11 @@
-interface IEvents {
-    callbacks: any;
+export interface IEvent {
+    eventName: string;
+    callback: Function;
+    id: string | number;
+}
+
+export interface IEvents {
+    callbacks: IEvent[];
     fire: any;
     listen: any;
     unlisten: any;
@@ -9,11 +15,8 @@ export const Events: IEvents = {
     callbacks: [],
 
     fire(eventName: string, data: any = null) {
-        if (this.callbacks.some((c: any) => c.eventName === eventName)) {
-            this.callbacks.filter((c: any) => c.eventName === eventName).forEach((c: any) => {
-                c.callback(data);
-            });
-        }
+        const events = this.callbacks.filter((c: IEvent) => c.eventName === eventName);
+        if(events.length > 0) events.forEach((c: IEvent) => c.callback(data));
     },
 
     listen(eventName: string, id: string | number, callback: Function) {
@@ -21,6 +24,8 @@ export const Events: IEvents = {
     },
 
     unlisten(eventName: string, id: string | number) {
-        this.callbacks.splice(this.callbacks.indexOf(this.callbacks.find((c: any) => c.eventName === eventName && c.id === id)), 1);
+        const callback: IEvent | undefined = this.callbacks.find((c: IEvent) => c.eventName === eventName && c.id === id);
+        const index: number | null = callback ? this.callbacks.indexOf(callback) : null;
+        if(index) this.callbacks.splice(index, 1);
     }
 };

@@ -29,12 +29,7 @@ export function isNumber(value: any) {
     return !isNaN(parseFloat(value)) && isFinite(value);
 }
 
-var keyStr = "ABCDEFGHIJKLMNOP" +
-    "QRSTUVWXYZabcdef" +
-    "ghijklmnopqrstuv" +
-    "wxyz0123456789+/" +
-    "=";
-
+var keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
 export function encode64(input: any) {
     input = escape(input);
     var output = "";
@@ -110,12 +105,4 @@ export function decode64(input: any) {
     } while (i < input.length);
 
     return unescape(output);
-}
-
-export function strstr(needle: string, haystack: string, caseSensitive: boolean = false): boolean {
-    if(caseSensitive) {
-        return haystack.indexOf(needle) !== -1;
-    }
-
-    return haystack.toLowerCase().indexOf(needle.toLowerCase()) !== -1;
 }
