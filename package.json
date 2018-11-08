@@ -2,7 +2,7 @@
   "main": "./lib/index.js",
   "name": "po-utilities",
   "description": "Javascript Utilities",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "ISC",
   "author": "Patrick Otten <patrick@patrickotten.com>",
   "private": true,

@@ -20,7 +20,8 @@ export const Events: IEvents = {
     },
 
     listen(eventName: string, id: string | number, callback: Function) {
-        this.callbacks.push({ eventName, callback, id });
+        const events = this.callbacks.filter((c: IEvent) => c.eventName === eventName && c.id === id);
+        if(events.length === 0) this.callbacks.push({ eventName, callback, id });
     },
 
     unlisten(eventName: string, id: string | number) {
