@@ -1,5 +1,5 @@
 export interface Listener<T> {
-    (event: T): any;
+    (sender: any, event: T): any;
 }
 
 export interface Disposable {
@@ -30,17 +30,17 @@ export class TypedEvent<T> {
         if (callbackIndex > -1) this.listeners.splice(callbackIndex, 1);
     }
 
-    emit = (event: T) => {
+    emit = (sender: any, event: T) => {
         /** Update any general listeners */
-        this.listeners.forEach((listener) => listener(event));
+        this.listeners.forEach((listener) => listener(sender, event));
 
         /** Clear the `once` queue */
-        this.listenersOncer.forEach((listener) => listener(event));
+        this.listenersOncer.forEach((listener) => listener(sender, event));
         this.listenersOncer = [];
     }
 
-    pipe = (te: TypedEvent<T>): Disposable => {
-        return this.on((e) => te.emit(e));
+    pipe = (sender: any, te: TypedEvent<T>): Disposable => {
+        return this.on((e) => te.emit(sender, e));
     }
 }
 
