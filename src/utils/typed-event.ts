@@ -1,4 +1,4 @@
-export class VCEvent {
+export class TypedEventBase {
     sender: any;
 
     constructor(sender: any) {
@@ -6,7 +6,7 @@ export class VCEvent {
     }
 }
 
-export interface Listener<T extends VCEvent> {
+export interface Listener<T extends TypedEventBase> {
     (event: T): any;
 }
 
@@ -14,7 +14,7 @@ export interface Disposable {
     dispose(): void;
 }
 
-export class TypedEvent<T extends VCEvent> {
+export class TypedEvent<T extends TypedEventBase> {
     private listeners: Listener<T>[] = [];
     private listenersOncer: Listener<T>[] = [];
 
