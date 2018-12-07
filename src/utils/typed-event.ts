@@ -1,12 +1,20 @@
-export interface Listener<T> {
-    (sender: any, event: T): any;
+export class VCEvent {
+    sender: any;
+
+    constructor(sender: any) {
+        this.sender = sender;
+    }
+}
+
+export interface Listener<T extends VCEvent> {
+    (event: T): any;
 }
 
 export interface Disposable {
     dispose(): void;
 }
 
-export class TypedEvent<T> {
+export class TypedEvent<T extends VCEvent> {
     private listeners: Listener<T>[] = [];
     private listenersOncer: Listener<T>[] = [];
 
@@ -30,18 +38,16 @@ export class TypedEvent<T> {
         if (callbackIndex > -1) this.listeners.splice(callbackIndex, 1);
     }
 
-    emit = (sender: any, event: T) => {
+    emit = (event: T) => {
         /** Update any general listeners */
-        this.listeners.forEach((listener) => listener(sender, event));
+        this.listeners.forEach((listener) => listener(event));
 
         /** Clear the `once` queue */
-        this.listenersOncer.forEach((listener) => listener(sender, event));
+        this.listenersOncer.forEach((listener) => listener(event));
         this.listenersOncer = [];
     }
 
-    pipe = (sender: any, te: TypedEvent<T>): Disposable => {
-        return this.on((e) => te.emit(sender, e));
+    pipe = (te: TypedEvent<T>): Disposable => {
+        return this.on((e) => te.emit(e));
     }
 }
-
-export default TypeError;
