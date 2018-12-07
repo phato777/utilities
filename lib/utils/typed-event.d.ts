@@ -1,5 +1,5 @@
 export interface Listener<T> {
-    (event: T): any;
+    (sender: any, event: T): any;
 }
 export interface Disposable {
     dispose(): void;
@@ -11,7 +11,7 @@ export declare class TypedEvent<T> {
     on: (listener: Listener<T>) => Disposable;
     once: (listener: Listener<T>) => void;
     off: (listener: Listener<T>) => void;
-    emit: (event: T) => void;
-    pipe: (te: TypedEvent<T>) => Disposable;
+    emit: (sender: any, event: T) => void;
+    pipe: (sender: any, te: TypedEvent<T>) => Disposable;
 }
 export default TypeError;
