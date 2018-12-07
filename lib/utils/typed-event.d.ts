@@ -1,14 +1,14 @@
-export declare class VCEvent {
+export declare class TypedEventBase {
     sender: any;
     constructor(sender: any);
 }
-export interface Listener<T extends VCEvent> {
+export interface Listener<T extends TypedEventBase> {
     (event: T): any;
 }
 export interface Disposable {
     dispose(): void;
 }
-export declare class TypedEvent<T extends VCEvent> {
+export declare class TypedEvent<T extends TypedEventBase> {
     private listeners;
     private listenersOncer;
     readonly isEmpty: boolean;
